@@ -167,7 +167,7 @@
                 "tags": [
                     "AuthController"
                 ],
-                "summary": "revoke user's token",
+                "summary": "Revoke user's token",
                 "description": "user token revoke access",
                 "operationId": "auth.logout",
                 "responses": {

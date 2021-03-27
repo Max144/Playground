@@ -5,10 +5,13 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
+use App\Http\Resources\UserResource;
 use Illuminate\Http\JsonResponse;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+
+use function MongoDB\BSON\toJSON;
 
 class ApiAuthController extends Controller
 {
@@ -153,7 +156,7 @@ class ApiAuthController extends Controller
     /**
      * Get the authenticated User
      *
-     * @return JsonResponse
+     * @return UserResource
      * @OA\Get(
      *     path="/api/auth/me",
      *     operationId="auth.me",
@@ -174,7 +177,7 @@ class ApiAuthController extends Controller
      * )
      */
     public function me () {
-        return response()->json(auth()->user());
+        return new UserResource(auth()->user());
     }
 
     /**
